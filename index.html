@@ -52,29 +52,31 @@
   
   //adding visuals to the music 
   
-  function createMusicalNote () {
+  function createMusicalNote (x, y) {
     //I want the note to appear at certain locations 
     //window.innerWidth x window.InnerHeight
-    const randomLeft = Math.random() * window.innerWidth
-    const randomTop = Math.random() * window.innerHeight
-    console.log(randomLeft, randomTop)
+    //const randomLeft = Math.random() * window.innerWidth
+    //const randomTop = Math.random() * window.innerHeight
+    //console.log(randomLeft, randomTop)
     
     const musicalNote = document.createElement('div')
     musicalNote.innerText = '🎵'
     document.body.appendChild(musicalNote)
-    //console.log(musicalNote)
-    musicalNote.style.left = randomLeft + 'px'
-    musicalNote.style.top = randomTop + 'px'
+    musicalNote.style.left = x + 'px'
+    musicalNote.style.top = y + 'px'
     musicalNote.style.fontSize = '50px'
     musicalNote.style.opacity = Math.random() * 1
     //I want the notes to move a little 
     //collision?
+  }
+  
+  function animate () {
     
   }
   
   function visual (e) {
     if (e.key) {
-        createMusicalNote()
+        createMusicalNote(100, 100)
     }
   }
   
