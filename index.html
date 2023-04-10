@@ -10,14 +10,36 @@
     return arr[Math.floor(Math.random() * arr.length)]
   }
   
-  const randomItem = getRandomItem(notes)
-  
   function play (e) {
     const synth = new Tone.Synth().toDestination()
     console.log(synth.oscillator.type)
     //keyboard
     if (e.key === '1') {
-      
+      synth.triggerAttackRelease('C4', '16n')
+    } else if (e.key === '2') {
+      synth.triggerAttackRelease('D4', '16n')
+    } else if (e.key === '3') {
+      synth.triggerAttackRelease('E4', '16n')
+    } else if (e.key === '4') {
+      synth.triggerAttackRelease('F4', '16n')
+    } else if (e.key === '5') {
+      synth.triggerAttackRelease('G4', '16n')
+    } else if (e.key === '6') {
+      synth.triggerAttackRelease('A4', '16n')
+    } else if (e.key === '7') {
+      synth.triggerAttackRelease('B4', '16n')
+    } else if (e.key === '8') {
+      synth.triggerAttackRelease('C5', '16n')
+    } else if (e.key === '9') {
+      synth.triggerAttackRelease('D5', '16n')
+    } else if (e.key === '0') {
+      synth.triggerAttackRelease('E5', '16n')
+    } else {
+      const randomItem = getRandomItem(notes)
+      synth.triggerAttackRelease(randomItem, '16n')
     }
   }
+  
+  window.addEventListener('keypress', play)
+  
 </script>
