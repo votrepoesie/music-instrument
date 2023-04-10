@@ -1,12 +1,5 @@
 <body></body>
 
-<style>
-  div {
-    position: absolute;
-  }
-</style>
-
-
 <script src="https://tonejs.github.io/build/Tone.js"></script>
 <script>
   /* global Tone */
@@ -52,6 +45,9 @@
   
   //adding visuals to the music 
   
+  let x = window.innerWidth / 2
+  let y = window.innerHeight / 2
+  
   function createMusicalNote (x, y) {
     //I want the note to appear at certain locations 
     //window.innerWidth x window.InnerHeight
@@ -62,21 +58,25 @@
     const musicalNote = document.createElement('div')
     musicalNote.innerText = '🎵'
     document.body.appendChild(musicalNote)
+    musicalNote.style.position = 'absolute'
     musicalNote.style.left = x + 'px'
     musicalNote.style.top = y + 'px'
     musicalNote.style.fontSize = '50px'
     musicalNote.style.opacity = Math.random() * 1
     //I want the notes to move a little 
     //collision?
+    function animate () {
+    	requestAnimationFrame(animate)
+      y++
+      musicalNote.style.top = y + 'px'
+    }
+    animate()
   }
   
-  function animate () {
-    
-  }
-  
+
   function visual (e) {
     if (e.key) {
-        createMusicalNote(100, 100)
+      createMusicalNote(100, 100)
     }
   }
   
