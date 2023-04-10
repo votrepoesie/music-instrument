@@ -1,22 +1,33 @@
-<body></body>
+<body>
+  <p>
+    Use your keyboard to make some tunes 🎵 <br>
+    Number keys are C4 to E5, other keys are random
+  </p>
+</body>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+</style>
 
 <script src="https://tonejs.github.io/build/Tone.js"></script>
 <script>
   /* global Tone */
   //some pleasant notes taken from https://gist.github.com/mattdesl/50fa00622294a86261edf3c7fbee2d3e
-  const notes = [ 'C5', 'A3', 'D4', 'G4', 'A4', 'F4' ]
-  
-  function getRandomItem (arr) {
+  const notes = ['C5', 'A3', 'D4', 'G4', 'A4', 'F4']
+
+  function getRandomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
   }
-  
+
   //would love some reverb 
-  
-  function play (e) {
+
+  function play(e) {
     const synth = new Tone.Synth().toDestination()
-    
+
     console.log('music!')
-    
+
     if (e.key === '1') {
       synth.triggerAttackRelease('C4', '16n')
     } else if (e.key === '2') {
@@ -42,45 +53,38 @@
       synth.triggerAttackRelease(randomItem, '16n')
     }
   }
-  
+
   //adding visuals to the music 
   
-  let x = window.innerWidth / 2
-  let y = window.innerHeight / 2
-  
-  function createMusicalNote (x, y) {
+  function createMusicalNote(x, y) {
     //I want the note to appear at certain locations 
     //window.innerWidth x window.InnerHeight
-    //const randomLeft = Math.random() * window.innerWidth
+    const randomLeft = Math.random() * window.innerWidth
     //const randomTop = Math.random() * window.innerHeight
     //console.log(randomLeft, randomTop)
-    
     const musicalNote = document.createElement('div')
     musicalNote.innerText = '🎵'
     document.body.appendChild(musicalNote)
     musicalNote.style.position = 'absolute'
-    musicalNote.style.left = x + 'px'
+    musicalNote.style.left = randomLeft + 'px'
     musicalNote.style.top = y + 'px'
     musicalNote.style.fontSize = '50px'
     musicalNote.style.opacity = Math.random() * 1
     //I want the notes to move a little 
-    //collision?
-    function animate () {
+    function animate() {
     	requestAnimationFrame(animate)
-      y++
-      musicalNote.style.top = y + 'px'
-    }
+    	y+= 0.5
+    	musicalNote.style.top = y + 'px'
+  	}
     animate()
   }
   
-
-  function visual (e) {
+  function visual(e) {
     if (e.key) {
       createMusicalNote(100, 100)
     }
   }
-  
+
   window.addEventListener('keypress', play)
   window.addEventListener('keypress', visual)
-  
 </script>
