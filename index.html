@@ -1,0 +1,23 @@
+<script src="https://tonejs.github.io/build/Tone.js"></script>
+
+<script>
+  /* global Tone */
+  //some pleasant notes taken from https://gist.github.com/mattdesl/50fa00622294a86261edf3c7fbee2d3e
+  const notes = [ 'C5', 'A3', 'D4', 'G4', 'A4', 'F4' ]
+  
+  //thanks GPT for this function
+  function getRandomItem (arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
+  }
+  
+  const randomItem = getRandomItem(notes)
+  
+  function play (e) {
+    const synth = new Tone.Synth().toDestination()
+    console.log(synth.oscillator.type)
+    //keyboard
+    if (e.key === '1') {
+      
+    }
+  }
+</script>
