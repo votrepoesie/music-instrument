@@ -1,7 +1,7 @@
 <body>
   <p>
     Use your keyboard to make some tunes 🎵 <br>
-    Number keys are C4 to E5, other keys are random 🎵
+    Number keys are in C-major plus a little more, other keys are random 🎵
   </p>
 </body>
 
@@ -16,41 +16,43 @@
   /* global Tone */
   //some pleasant notes taken from https://gist.github.com/mattdesl/50fa00622294a86261edf3c7fbee2d3e
   const notes = ['C5', 'A3', 'D4', 'G4', 'A4', 'F4']
+  const intervals = ['12n', '10n', '8n', '6n', '4n']
 
   function getRandomItem(arr) {
     return arr[Math.floor(Math.random() * arr.length)]
   }
 
-  //would love some reverb 
+  //additionally would love some reverb, haven't figured out yet 
+  //apprently needs async?
 
   function play(e) {
     const synth = new Tone.Synth().toDestination()
-
     console.log('music!')
-
+    const randomInterval = getRandomItem(intervals)
+    
     if (e.key === '1') {
-      synth.triggerAttackRelease('C4', '16n')
+      synth.triggerAttackRelease('C4', randomInterval)
     } else if (e.key === '2') {
-      synth.triggerAttackRelease('D4', '16n')
+      synth.triggerAttackRelease('D4', randomInterval)
     } else if (e.key === '3') {
-      synth.triggerAttackRelease('E4', '16n')
+      synth.triggerAttackRelease('E4', randomInterval)
     } else if (e.key === '4') {
-      synth.triggerAttackRelease('F4', '16n')
+      synth.triggerAttackRelease('F4', randomInterval)
     } else if (e.key === '5') {
-      synth.triggerAttackRelease('G4', '16n')
+      synth.triggerAttackRelease('G4', randomInterval)
     } else if (e.key === '6') {
-      synth.triggerAttackRelease('A4', '16n')
+      synth.triggerAttackRelease('A4', randomInterval)
     } else if (e.key === '7') {
-      synth.triggerAttackRelease('B4', '16n')
+      synth.triggerAttackRelease('B4', randomInterval)
     } else if (e.key === '8') {
-      synth.triggerAttackRelease('C5', '16n')
+      synth.triggerAttackRelease('C5', randomInterval)
     } else if (e.key === '9') {
-      synth.triggerAttackRelease('D5', '16n')
+      synth.triggerAttackRelease('D5', randomInterval)
     } else if (e.key === '0') {
-      synth.triggerAttackRelease('E5', '16n')
+      synth.triggerAttackRelease('E5', randomInterval)
     } else {
       const randomItem = getRandomItem(notes)
-      synth.triggerAttackRelease(randomItem, '16n')
+      synth.triggerAttackRelease(randomItem, randomInterval)
     }
   }
 
