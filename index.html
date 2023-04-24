@@ -22,37 +22,39 @@
     return arr[Math.floor(Math.random() * arr.length)]
   }
 
-  //additionally would love some reverb, haven't figured out yet 
-  //apprently needs async?
-
-  function play(e) {
-    const synth = new Tone.Synth().toDestination()
+  async function play(e) {
+    const reverb = new Tone.Reverb({
+    decay: 5,
+    wet: 1,
+  	}).toDestination();
+    
+    const synth = new Tone.AMSynth().connect(reverb);
     console.log('music!')
-    const randomInterval = getRandomItem(intervals)
+    //const randomInterval = getRandomItem(intervals)
     
     if (e.key === '1') {
-      synth.triggerAttackRelease('C4', randomInterval)
+      synth.triggerAttackRelease('C4', intervals[3])
     } else if (e.key === '2') {
-      synth.triggerAttackRelease('D4', randomInterval)
+      synth.triggerAttackRelease('D4', intervals[3])
     } else if (e.key === '3') {
-      synth.triggerAttackRelease('E4', randomInterval)
+      synth.triggerAttackRelease('E4', intervals[3])
     } else if (e.key === '4') {
-      synth.triggerAttackRelease('F4', randomInterval)
+      synth.triggerAttackRelease('F4', intervals[3])
     } else if (e.key === '5') {
-      synth.triggerAttackRelease('G4', randomInterval)
+      synth.triggerAttackRelease('G4', intervals[3])
     } else if (e.key === '6') {
-      synth.triggerAttackRelease('A4', randomInterval)
+      synth.triggerAttackRelease('A4', intervals[3])
     } else if (e.key === '7') {
-      synth.triggerAttackRelease('B4', randomInterval)
+      synth.triggerAttackRelease('B4', intervals[3])
     } else if (e.key === '8') {
-      synth.triggerAttackRelease('C5', randomInterval)
+      synth.triggerAttackRelease('C5', intervals[3])
     } else if (e.key === '9') {
-      synth.triggerAttackRelease('D5', randomInterval)
+      synth.triggerAttackRelease('D5', intervals[3])
     } else if (e.key === '0') {
-      synth.triggerAttackRelease('E5', randomInterval)
+      synth.triggerAttackRelease('E5', intervals[3])
     } else {
       const randomItem = getRandomItem(notes)
-      synth.triggerAttackRelease(randomItem, randomInterval)
+      synth.triggerAttackRelease(randomItem, intervals[3])
     }
   }
 
